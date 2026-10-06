@@ -2,12 +2,12 @@
 
 独立于 `Simulation2` 仓库运行的 Vite + Vue 3 前端项目，包含 V1 和 V2 两套控制台。
 
-## 页面入口
+## 页面路由
 
 ```text
-index.html  项目入口页
-v1.html     V1 完整控制台
-v2.html     V2 单屏控制台
+#/     项目入口页
+#/v1   V1 完整控制台
+#/v2   V2 单屏控制台
 ```
 
 ## 一键启动
@@ -60,7 +60,25 @@ pnpm run build
 pnpm run preview
 ```
 
-构建产物位于 `dist/`，包含入口页、V1 和 V2 三个 HTML 入口。
+构建产物位于 `dist/`，使用单页 Vue Router 入口。
 
 项目运行时不读取 `Simulation2` 目录。V1/V2 的 API 请求统一通过
 `VITE_BACKEND_PROXY` 或 `VITE_API_BASE_URL` 指向外部后端。
+
+## 工程结构
+
+```text
+src/
+├─ main.js
+├─ App.vue
+├─ router/index.js
+├─ core/consoleOptions.js
+├─ components/VersionNav.vue
+├─ views/PortalView.vue
+├─ views/V1View.vue
+├─ views/V2View.vue
+└─ styles/
+```
+
+V1/V2 使用 Vue SFC 模板和 Vue Router；共享的业务状态与 API 方法集中在
+`src/core/consoleOptions.js`。

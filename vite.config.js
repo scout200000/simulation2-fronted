@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 
@@ -15,11 +14,6 @@ export default defineConfig(({ mode }) => {
   return {
     base: "./",
     plugins: [vue()],
-    resolve: {
-      alias: {
-        vue: "vue/dist/vue.esm-bundler.js"
-      }
-    },
     server: {
       host: "127.0.0.1",
       port: 5173,
@@ -29,15 +23,6 @@ export default defineConfig(({ mode }) => {
       host: "127.0.0.1",
       port: 4173,
       proxy
-    },
-    build: {
-      rollupOptions: {
-        input: {
-          portal: resolve(process.cwd(), "index.html"),
-          v1: resolve(process.cwd(), "v1.html"),
-          v2: resolve(process.cwd(), "v2.html")
-        }
-      }
     }
   };
 });
